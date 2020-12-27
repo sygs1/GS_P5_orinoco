@@ -1,0 +1,19 @@
+{
+  "name": "gs_p5_orinoco",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass style.scss:./style.css"
+  },
+  "author": "gs",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.11.0",
+    "webpack-cli": "^4.2.0"
+  },
+  "dependencies": {
+    "sass": "^1.30.0"
+  }
+}
