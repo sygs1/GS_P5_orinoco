@@ -187,9 +187,9 @@ function envoyerServer () {
 
 
 
-postProducts();
+//postProducts();
 
-function postProducts(){   
+//function postProducts(){   
 
   let products=[];
   extractId();
@@ -205,14 +205,14 @@ function postProducts(){
  };
  
  //localStorage.setItem("products", products);  
- console.log("envoi products (tableau Id) au server distant ");
+ //console.log("envoi products (tableau Id) au server distant ");
 
  localStorage.getItem("table products", products);
  console.log("products = " + products) 
  
-  post("http://localhost:3000/api/furniture/order", products); 
-  alert(" products envoyé server");
-};
+  //post("http://localhost:3000/api/furniture/order", products); 
+  //alert(" products envoyé server");
+//};
 
 
    
@@ -225,9 +225,9 @@ function postProducts(){
   
         
   
-  //const btnContact = document.getElementById("btnContact");
-btnContact.addEventListener("click", function () {
-  validFormulaire();
+  const btnContact = document.getElementById("btnContact");
+  btnContact.addEventListener("click", function () {
+ //validFormulaire();
 
   const firstname = document.getElementById("firstname").value;
   const name = document.getElementById("name").value;
@@ -241,27 +241,34 @@ btnContact.addEventListener("click", function () {
   console.table(contact);
   // stockage local
   localStorage.setItem("contact", JSON.stringify(contact)); 
-  alert("localStorage OK");
+  alert("envoi contact dans localStorage OK");
 
   // ----- regroupement contact et id-panier pour n) de commande
   let packServer = [contact, panierTotal[0]];
   
-  console.log("packServer = ");
-  console.log(packServer);
+  //console.log("packServer = ");
+  //console.log(packServer);
 
-  if ( contact = []) {    //  -------------------------- ne fonctionne pas 
-  alert("defaut : formulaire vide ou incomplet");  
+  //if ( contact = []) {    //  -------------------------- ne fonctionne pas 
+  //alert("defaut : formulaire vide ou incomplet");  
 
-  } else {    
+  //} else {    
           // envoi server
+
+      jsonBody = [contact, products];
+      localStorage.setItem("jsonBody", jsonBody);
+      
+      console.log("jsonBody = " + jsonBody);   
           
-      console.log("Envoi server");
-      post("http://localhost:3000/api/furniture/order", packServer);       
-      alert("Envoyé server");        
+      alert(" !!! Envoi server distant");
+
+      post("http://localhost:3000/api/furniture/order", jsonBody);       
+      
+      alert("Envoyé server distant ok");        
       //window.location.href = "confirm.html";
 
 
-  }
+  //}
 });
   
 
