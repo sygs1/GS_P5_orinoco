@@ -1,50 +1,231 @@
 <!doctype html>
-<html>
-<head>
-    <link rel="stylesheet" media="screen" href="style.css">
-    <meta charset="utf-8" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Panier-Orinoco, la référence en Chêne pour des meubles éternels</title>
-   
-</head>
-<body>
+<html lang="fr">
 
-    <header class="header">
-        <div class="nav">
-            <img src="./images/logorinoco.png" alt="logo" class="logo" width="150">
-            <nav>
-                <ul> 
-                    <li class="accueil"><a href="index.html" >Accueil</a></li>   
-                    <li class="panier"><a href="panier.html">Panier</a></li>
-                    <li class="confirm"><a href="confirm.html">Commande</a></li>               
-                </ul>
+<head>
+    
+    <!-- Required meta tags -->
+
+    <meta charset="utf-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" media="screen" href="style.css">
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+    crossorigin="anonymous">
+
+    <title>Panier-Orinoco, la référence en Chêne pour des meubles éternels</title>
+
+</head>
+
+<body>
+    <section class="containerHeader">
+        
+        <div class="row bg-light w-100 justify-content-between">
+            <div class="col">
+            <a href="index.html">
+                <img src="./images/logorinoco-min.png" width="200" height="75" alt="logo-orinoco" >
+            </a>
+            </div>
+           
+            <nav class="navbar navbar-light bg-light navbar-expand-lg">
+                <a class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item  active">
+                            <a class="navbar-brand" href="panier.html">Panier</a>
+                        </li>
+                        <li  class= "nav-item" >
+                            <a class="nav-link" href="index.html">Accueil</a>
+                        </li>                       
+                      
+                        <li class="nav-item ">
+                            <a class="nav-link" href="confirm.html">Commande</a>
+                        </li>
+                    </ul>
+                </div>
             </nav>
+        </div>    
+    </section>    
+      
+       
+    <div class="row">
+        <div class="jumbotron bg-info text-center ">                             
+            <div class="col text-white">
+              
+                <h3> Maintenant vous pouvez vérifier votre panier<br>
+                    et entrer vos coordonnées<br></h3>
+                <h6> tous les champs sont obligatoires<br></h6>
+
+            </div>
+                          
         </div>
        
-    </header>
+    
+    </div>
+</section>
 
-   
-   
-    <div>
-        <!--espace travail -->
+   <!--          ************* Affichage panier avec sélections produit  ****************       -->
+
+
+   <div class="container align-content-around">
+        <div class="row w-100 border-bottom border-info">
+            <div class="col-12 w-100 d-flex justify-content-between">
+                <p class="col-6">produit(s) préféré(s)</p>
+                <p class="col-4">finition choisie</p>
+                <p class="col-2">prix unitaire</p>
+            </div>    
+            
+        </div>
        
-    
-       <!--espace travail -->
-    
+        <div class="col-12 w-100 d-rows" id="containerProduit">
+            
+                <!-- div crées en JS -->
+
+
+
+
+
+                <!-- div crées en JS -->
+
+        </div>  
+        <div class="row w-100 d-flex justify-content-end mr-3 border-top border-info" id="prixTotal">
+           
+                <!-- div crées en JS -->
+
+
+        </div> 
     </div>
 
 
+   
+        <!--    ************* Affichage formulkaire de commande   **************** -->
+
+    <div class="containerFormulaire" id="containerFormulaire">
+        <h4>Formulaire de commande</h4>
+        <form class="needs-validation" novalidate>
+
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" class="form-control" id="firstname" placeholder="Gilles" required>
+                    <div class="valid-feedback">Ok !</div>
+                    <div class="invalid-feedback">Valeur incorrecte</div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="nom">Nom de famille</label>
+                    <input type="text" class="form-control" id="name" placeholder="Sivry" required>
+                    <div class="valid-feedback">Ok !</div>
+                    <div class="invalid-feedback">Valeur incorrecte</div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="pseudo">Adresse</label>
+                    <input type="text" class="form-control" id="adress" placeholder="13 rue du Bon-Temps" required>
+                    <div class="valid-feedback">Ok !</div>
+                    <div class="invalid-feedback">Valeur incorrecte</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="ville">Ville</label>
+                    <input type="text" class="form-control" id="city" placeholder="Bordeaux" required>
+                    <div class="valid-feedback">Ok !</div>
+                    <div class="invalid-feedback">Valeur incorrecte</div>
+                </div>          
+                <div class="form-group ml-3" >
+                    <label class="mr-2" for="mail">Email</label>
+                    <input type="email" id="mail" name="mail" class="form-control" id="mail" placeholder="contact@orinoco.fr" required >
+                    <div class="valid-feedback">Ok !</div>
+                    <div class="invalid-feedback">Valeur incorrecte</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="cgu" required>
+                  <label class="form-check-label" for="cgu">J'accepte les conditions générales d'utilisation et de vente</label>
+                  <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
+                </div>
+            </div>
+
+            <button class="btn btn-info bg-info" id="btnContact" type="submit">Envoyer</button>
+        </form>
+    </div>
+
+
+       <!--    ************* script de controle  formulaire de commande   **************** -->
+
+<!--
+    <script>
+
+        (function validFormulaire() {
+          'use strict';
+          window.addEventListener('load', function() {
+            let forms = document.getElementsByClassName('needs-validation');
+            let validation = Array.prototype.filter.call(forms, function(form) {
+              form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+              }, false);
+            });
+          }, false);
+        })();
+      </script>
+
+
+    
+        <!--espace choix produit -->
+       
+        <div class="row" id="envoiFormulaire">
+
+             <!--espace prix total-->
+
+        </div>
+
+
+             <!--    ************* footer **************** -->
+    
+    </div>
     
 
-    <footer>
-        <ul>
-            <li><a href="index.html">Mentions légales</a></li>
-            <li><a href="mailto:contact@orinoco.com">Contactez-nous</a></li>            
-        </ul>
-    </footer>
+    <div class="containerFooter">
+        <div class="row bg-info text-decoration-none text-center">
+            <nav class="navbar navbar-expand bg-info w-100 ">               
+                <ul class="navbar-nav w-100 text-white d-flex justify-content-around ">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="mailto:contact@orinoco.com">Nous contacter</a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-white" href="index.html">Mentions légales</a>
+                    </li>               
+                </ul>
+            </nav>
+        </div> 
+    </div>
+
+
+      
+    <!--    ************* appel fichier script **************** -->
+
+
     <script src="./js/fctGP.js"></script>
     <script src="./js/panier.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    
 
 </body>
 </html>

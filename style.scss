@@ -1,5 +1,5 @@
 
-
+/*
 @font-face {
     font-family: "Roboto";
     src: url("./base/polices/Roboto/Roboto-Regular.ttf") format("truetype");
@@ -21,109 +21,128 @@
 .vewport{
 width:auto;   
 }
-//************************************* variables color ****/
-$Primaire: #9356DC; 
-$Secondaire: #FF79DA;
-$Tertiaire: #99E2D0 ; 
-$background-col: #f2f2f2;
 
 
-//************************************* variables fonts ****/
-$fontFamily1: "roboto";
-$fontFamily2: "Shrikhand";
+// PAGE ACCUEIL   //
 
-
-//************************************* structure strings ****/
-
-h1{ font-family: $fontFamily2;}
-
-h2{ font-family: $fontFamily1;
-    font-size: 20px; color:black;  font-weight: bold;}
-h3{ font-family: $fontFamily1;
-    font-size: 16px; color:black; font-weight: bold;}
-p{font-family: $fontFamily1;
-    font-size: 14px;color:black;} 
-//************************************* container ****/
 
 body{       
-border: 1px solid red;
-width: 97%;
+
+width: 100%;
 padding:5px;
 margin:0 auto;
-background-color: $background-col;
+
 }
-         
-    
-    //**************** page d'accueil *****/
-    //***************   header   ****************/
-    
-    header {
-    width:95%;
-    display:flex;
-    justify-content: space-around;
-    flex-wrap:wrap;
-    padding: 20px 0;
-    margin: 0 auto;
-    
-        & img{
-        width:50%;
-        height: 12em;
-        margin: 0 auto;
-        justify-content: center;
-        }
 
-        & .nav{
-            border: 1px solid pink;
-            margin:0 auto;
-            
-        }
-        & ul{
-        display:flex;
-        justify-content: space-around;
-        text-decoration: none;
-        list-style-type: none;
-        color:$Primaire;
-        }
-
-        & .intro{
-            text-align: center;
-        }
-    } 
-    
-    //***************   container pour articles avec photos  ****************/
-  
-
-    #containerArticles{
-        max-width: 90%;
-        min-height: 30em;
+   
+    /***************   container pour articles avec photos  ***************/
+    .containerHeader{
+        width:95%;
+       margin: 0 auto;
+       
+    }
+    .containerFooter div{ 
+        width:95%;       
         margin:0 auto;
-        border: 1px solid black;
-        padding: 20px 20px;
 
+        & li{
+            color:white;
+        }
+    }
+    
+    .jumbotron{
+        width:95%;
+        height: 200px;
+        margin:0 auto;
+            & h2{
+                color:white;
+            }
+    }
+
+    .btn{
+        margin:0 auto;
+    }
+
+  
+    .containerHeader{
+        width:95%;
+    }
+   
+
+    #containerArticles{        
+        margin:10px 10px;
+          
+              
         display:grid;
         grid-template-columns: 1fr 1fr;
+        padding: 20px 20px;
 
-        & .blocPhotos{
-            width:80%;
-            border: 1px solid, blue;
-    
+        & div{
+         margin: 20px 20px;
+         padding:20px 20px; 
+         border: 2px solid grey;
+         box-shadow: 10px 5px 5px grey;
+         
         }
-
-
+        
     }
 
-    //******  footer ***********************************//
-    footer{
-     width: 100%;
-     border: 1px solid green;
+    .containerFormulaire{
+        margin: 30px 30px;
+    }
+   
     
-        & ul{
-        display:flex;
-        justify-content: space-around;
-        text-decoration: none;
-        list-style-type: none;
-        color:$Primaire;
-        }
+    // PAGE PRODUIT //
+   
+    #containerProduit{
+       
+        margin: 0 auto;
+        min-height: 10em;
     }
 
 
+    .needs-validation{
+        margin:auto;
+    }
+
+
+    /* PAGE PANIER  */
+
+
+
+
+
+    /* PAGE CONFIRM COMMANDE  */
+
+
+
+
+/*********** breakP smartphone ***********/
+@media screen and (max-width: 767px) {
+    .vewport {
+      width: 499px;
+    }
+  
+    #containerArticles{  
+    margin:0 auto;
+    width:90% ;
+    padding:20px 0;
+       
+    display:grid;
+    grid-template-columns: 1fr;
+
+        & div{
+            width:100%;
+            margin:20px auto;
+        }
+            
+    
+    }
+    #containerProduit{
+        margin:30px auto;
+        padding:10px 0px;
+            & div{
+                width: 100%;
+            }
+    }
+}

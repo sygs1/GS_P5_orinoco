@@ -1,70 +1,87 @@
 
 
-//ajoute une div pour inserer blocs //
-function ajoutDivBlocs(section){
+// Init infos pdts recup server + affichage ds html
+
+function ajoutProduit(responseProduit, section) {
+
     const div = document.createElement("div");
-    div.setAttribute("class", "blocPhotos");
-    section[1].appendChild(div);
-
-    console.log("crea_div_bloc_pdt");
-}
-
-
-
-get("http://localhost:3000/api/furniture")
-.then (function (response){
-
-console.log(response);
-
-const section = document.getElementById("containerArticles");
-
-///boucle incrémentée
-    for (let i = 0; i < response.lenght; i = i++ ) {
-        ajoutProduit(response[i], section);      
-
-    }
- 
-});
-
-// Intégration infos articles pdts ds html
-
-function ajoutProduit(responseProduct, section) {
-    const div = document.createElement("div");
-    div.innerHTML = responseProduct.name;
-    div.setAttribute("class", "blocPhotos");
-    
+    div.innerHTML = responseProduit.name;
+    div.setAttribute("class", "card-title");
+        
     const img = document.createElement("img");
-    img.setAttribute("src", responseProduct.imageUrl);
-    img.setAttribute("width", "100%");
+    img.setAttribute("class", "card-img");
+    img.setAttribute("src", responseProduit.imageUrl);
+    img.setAttribute("width", "30%");
+    
 
     const figCaption = document.createElement("div");
-    figCaption.innerHTML = responseProduct.description;
+    figCaption.innerHTML = responseProduit.description;
+    div.setAttribute("class", "card-body");
 
-    const vernis = document.createElement("p");
-    vernis.innerHTML = "Choix finition :" + responseProduct.varnish;
+    const varnish = document.createElement("p");
+    varnish.innerHTML = "Choix finition :" + responseProduit.varnish;
+    varnish.setAttribute("class", "class-text font-weight-bold");
 
-    const prix = document.createElement("p");
-    prix.innerHTML = responseProduct.price + "€";
+
+    const price = document.createElement("p");
+    price.innerHTML = responseProduit.price/100 + " .00 €";
+    price.setAttribute("class", "card-text");
+    //price.setAttribute("")
 
     const link = document.createElement("a");
-    link.setAttribute("href", "produit.html?id=" + responseProduct._id);
-
-    section[1].appendChild(div);
-    div.appendChild(link);
-    link.appendChild(img);
-    div.appendChild(figCaption);
-    div.appendChild(varnish);
-    div.appendChild(price);
-
-    console.log("integration_pdts");
-}
-
-// ajout div
-function ajoutDiv(section){
-    const div = document.createElement("div");
-    div.setAttribute("class", "article");
-    section[1], appendChild(div);
+    link.setAttribute("href", "produit.html?id=" + responseProduit._id);
     
-    console.log("ajout_div");
+   div.appendChild(link);        
+   link.appendChild(img);   
+   div.appendChild(figCaption);
+   div.appendChild(varnish);
+   div.appendChild(price);
 
-}
+    // masque enfants
+
+    section.appendChild(div);  
+   
+    
+};
+
+
+
+
+console.log("// appel server // ");
+
+get("http://localhost:3000/api/furniture")
+.then (function (responseProduit){
+
+    //console.log(responseProduit)
+
+    const section = document.getElementById("containerArticles");
+    section.setAttribute("class", "card")
+    section.setAttribute("width", "40%");
+
+    console.log(section);
+
+    for (let i = 0; i < responseProduit.length; i++ ) { 
+        
+        
+
+        ajoutProduit(responseProduit[i], section);
+
+    }
+    
+    console.table(responseProduit); 
+
+    
+});
+
+/////////////////////////////////////////pb affichage ds HTML
+
+
+
+
+// penser carte produits cliquable //
+
+ 
+
+
+
+////////////////////////////////////// test reup /////////////////////////////////////
