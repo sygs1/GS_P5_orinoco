@@ -257,7 +257,7 @@ function envoyerServer () {
 
       jsonBody = [contact, products];
       localStorage.setItem("jsonBody", jsonBody);
-      
+
       console.log("jsonBody = " + jsonBody);   
           
       alert(" !!! Envoi server distant");
@@ -267,6 +267,7 @@ function envoyerServer () {
       alert("Envoyé server distant ok");        
       //window.location.href = "confirm.html";
 
+      
 
   //}
 });

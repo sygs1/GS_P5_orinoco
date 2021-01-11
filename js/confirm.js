@@ -1,5 +1,5 @@
 
-
+ 
 
 
 function afficherConfirmation(){   
@@ -22,16 +22,17 @@ function afficherConfirmation(){
     DivRecapCommande.appendChild(messageRecap);
     DivRecapCommande.appendChild(messagePrix);
 
-    
+    console.log("------------Montant total de la commande----------" + prixTotal/100 + ".00 €");
 };
 
 
 
 afficherConfirmation();
 
-console.log("--------------------------------------");
+
  ///     adresse livraison
  let contact1 = JSON.parse(localStorage.getItem("contact"));
+ console.log("-------Coordonnées de livraison-----------")
  console.table(contact1); 
  
  alert("Merci " + contact1[0] + " vous serez livré au " + contact1[2] + " à " + contact1[3] );
