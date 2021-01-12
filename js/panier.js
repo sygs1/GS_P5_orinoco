@@ -74,63 +74,75 @@ for (i = 0; i < (panier.length); i++) {
     
   }; //------- fin fonction ajoutProduit--------------------------
  
-}; //------- fin boucle ajout Produit ----------------------------------
-
-    //ecoute button supprimer// -------- ne fonctionne pas --------------
-
-    
-
-document.getElementsByTagName("data-id"); 
-//console.log(data-id);
-
-btnSupp.addEventListener("click", function() {
-  supprimerProduit(); 
-}); 
-
 
   
-  function supprimerProduit () { 
-    //document.getElementsByClassName("containerProduit");
-    //containerProduit.removeChild(divContenu, divPrice);             
-    //document.getElementsByClassName("divContenu");
-    //divContenu.removeChild(image, titre, divVarnish);
-    for (s = 0; s < panier.length; s++) {    
-      console.log(panier[s]);
-      console.log(btnSupp.dataset("id"));
+    //ecoute button supprimer// -------- ne fonctionne pas --------------
+//document.getElementsByClassName("btnSupp");
+
+btnSupp.addEventListener("click", function () { 
+  btnSuppId = panierTemp[0]; 
+  alert("btnSuppId="+ btnSuppId);
+  alert("panierTemp.length = " + panierTemp.length);
+  
+  //alert("touché =" + panierTemp[0]);
+    for (s = 0; s != panierTemp.length; s++) { 
+    const majPanier = panierTemp.splice(s,1,"");
+    console.log("-----");
+    console.log("Donnée otée de panierTemp = " + majPanier);
+    console.log("panierTemp =" + panierTemp);
+    
+    };
+
+    supprimerProduit();
+
+    function supprimerProduit () {    
+        
+      alert("debut supp champs")
+    
+      document.getElementsByClassName("divContenu").innerHTML = "";
+      document.getElementsByClassName("price").innerHTML = "";
+      document.getElementsByClassName("imageProduit").innerHTML = "";
+      document.getElementsByClassName("divTitre").innerHTML = "";
+      document.getElementsByClassName("titre").innerHTML = "";
+      document.getElementsByClassName("varnish").innerHTML = "";
+        //--------------
+      containerProduit.appendChild(divPrice);
+      divContenu.appendChild(image);
+      divContenu.appendChild(divTitre);           
+      divTitre.appendChild(titre);
+      divTitre.appendChild(btnSupp);
+      divContenu.appendChild(divVarnish); 
+        
+      //------------Maj Panier avec produit supprimé ----------------------------   
+      localStorage.setItem("panier", JSON.stringify(panier)); // MaJ
+      console.log("MàJ panier ds localStorage" + panier); 
+
+      if (panier = []){
+       LocalStorage.clear();
+       console.log("panier vide");
+       window.location.href = "index.html";
+      }
+
       
-    
-    
-    
-    //document.getElementsByClassName("divContenu").innerHTML = "";
-    // document.getElementsByClassName("price").innerHTML = "";
-    //document.getElementsByClassName("imageProduit").innerHTML = "";
-    // document.getElementsByClassName("divTitre").innerHTML = "";
-    // document.getElementsByClassName("titre").innerHTML = "";
-    // document.getElementsByClassName("varnish").innerHTML = "";
-    //--------------
-    // containerProduit.appendChild(divPrice);
-    // divContenu.appendChild(image);
-    // divContenu.appendChild(divTitre);           
-    // divTitre.appendChild(titre);
-    //divTitre.appendChild(btnSupp);
-    // divContenu.appendChild(varnish); 
+    } 
+    window.location.href = "panier.html";
+   //------- fin boucle ajout Produit ----------------------------------
+     
+  })
+ 
 
-
-  }  
+      //if ((panierTemp[s].btnSuppId) === btnSuppId ){
+      //  panierTemp[s].splice(s, 1);
+       //break;   
+  
 };
 
 
-
-
-
-
-
-
-    
+ 
+  
+  
        
-    // ------------Maj Panier avec produit supprimé ----------------------------   
-    localStorage.setItem("panier", JSON.stringify(panier)); // MaJ
-    console.log("MàJ panier ds localStorage" + panier); 
+    //
     //window.location.href = "panier.html" // refresh page
   
   
@@ -143,7 +155,7 @@ localStorage.setItem("panierTotal", JSON.stringify(panierTotal));
 
     // --------- calculer prix total ------------------------ a voir avec plusieurs produits dans panier
   
- let  prixTotal= 0;
+let  prixTotal= 0;
  calculerPrix();
 
 function calculerPrix() {  
@@ -157,12 +169,13 @@ function calculerPrix() {
   console.log("prixTotal = " + prixTotal); // calcul prix //-------------------------------------------------------
 };
 
+
   //prixTotal = parseInt(elt[5], 10); // conversion string en Int
 console.log("envoi prixTotal dans LocalStorage");
 
-localStorage.setItem("prixTotal", prixTotal);  
+localStorage.setItem("prixTotal", prixTotal);  //prix Total dans le localStorage
 total = document.getElementById("prixTotal");
-total.innerHTML = "Total de votre sélection : " + prixTotal/100 + ".00 €";
+total.innerHTML = "Total de votre sélection : " + prixTotal/100 + ".00 €";  //affichage DOM prix Total 
 
 
     // ---------------------- Test post avec les produits et leur Id ------
@@ -172,7 +185,7 @@ total.innerHTML = "Total de votre sélection : " + prixTotal/100 + ".00 €";
     //console.log("tempPrix = " + tempPrix)  
 
 
-envoyerServer();
+envoyerServer(); // panierTotal dans le localStorage
 
  // ------------ stockage --------
 function envoyerServer () {           
@@ -197,10 +210,10 @@ function envoyerServer () {
   localStorage.setItem("products", JSON.stringify(products)); 
  
   function extractId() {
-    for (let p = 0; p < panier.length; p++) {    
+    for (let p = 0; p < panier.length; p++) {   //boucle extraction Id des produits selectionnés 
       elt = panier[p]; 
       eltId = elt[0] ;  
-      products.push(eltId); 
+      products.push(eltId); // push des Id dans products
     } 
  };
  
@@ -208,7 +221,7 @@ function envoyerServer () {
  //console.log("envoi products (tableau Id) au server distant ");
 
  localStorage.getItem("table products", products);
- console.log("products = " + products) 
+ console.log("products = " + products) ;
  
   //post("http://localhost:3000/api/furniture/order", products); 
   //alert(" products envoyé server");
@@ -223,55 +236,148 @@ function envoyerServer () {
 
   // Envoi contact dans localStorage   ----------
   
-        
+     //----------------------------- ne foncvtionne pas   
   
   const btnContact = document.getElementById("btnContact");
   btnContact.addEventListener("click", function () {
- //validFormulaire();
-
-  const firstname = document.getElementById("firstname").value;
-  const name = document.getElementById("name").value;
-  const adress = document.getElementById("adress").value;
-  const city = document.getElementById("city").value;
-  const mail = document.getElementById("mail").value;
-
-  const contact= [firstname, name, adress, city, mail];
-  
-  console.log("contact = ");
-  console.table(contact);
-  // stockage local
-  localStorage.setItem("contact", JSON.stringify(contact)); 
-  alert("envoi contact dans localStorage OK");
-
-  // ----- regroupement contact et id-panier pour n) de commande
-  let packServer = [contact, panierTotal[0]];
-  
-  //console.log("packServer = ");
-  //console.log(packServer);
-
-  //if ( contact = []) {    //  -------------------------- ne fonctionne pas 
-  //alert("defaut : formulaire vide ou incomplet");  
-
-  //} else {    
-          // envoi server
-
-      jsonBody = [contact, products];
-      localStorage.setItem("jsonBody", jsonBody);
-
-      console.log("jsonBody = " + jsonBody);   
-          
-      alert(" !!! Envoi server distant");
-
-      post("http://localhost:3000/api/furniture/order", jsonBody);       
+    
+    //verification();
+    if (validFormulaire()) {
       
-      alert("Envoyé server distant ok");        
-      //window.location.href = "confirm.html";
+      console.log("oups")
+      let firstname = document.getElementById("firstname").value; 
+      let name = document.getElementById("name").value;
+      let adress = document.getElementById("adress").value;
+      let city = document.getElementById("city").value;
+      let mail = document.getElementById("mail").value;
+
+      let contact= [firstname, name, adress, city, mail];
+
+      //--------------------------------------
+      localStorage.setItem("contact", JSON.stringify(contact)); 
+        alert("envoi contact dans localStorage OK");
+      
+      
+            // envoi server jsonBody
+      
+        jsonBody = [contact, products];
+        localStorage.setItem("jsonBody", jsonBody);
+      
+        console.log("jsonBody = " + jsonBody);   
+            
+        alert(" !!! Envoi server distant");
+      
+        post("http://localhost:3000/api/furniture/order", jsonBody);       
+        
+        alert("Envoyé server distant ok");        
+        window.location.href = "confirm.html";
+      
+      
+    };
+    
+      function validFormulaire() {
+          "use strict";  // cadrage pour compatibilité 
+          //window.location = "panier.html";
+        window.addEventListener("load", function() {
+          //document.getElementById("containerFormulaire")
+          //console.log(containerFormulaire);
+          //document.addEventListener("load", function () {
+            let forms = document.getElementsByClassName("needs-validation"); //recup tous les formulaires
+        
+          var validation = Array.prototype.filter.call(forms, function(form) { //créé une table avec les "needs-validation"
+        
+            form.addEventListener("submit", function(event) { //écoute saisies
+              if (form.checkValidity() === false) {    //check = return true si donées valides 
+        
+                event.preventDefault(); // écoute evt et continue
+                event.stopPropagation(); // arrête là
+              }
+              form.classList.add("was-validated");
+            }, false);
+          });
+        }, false);
+      }(alert("fin de test"));
+    //--------------------------------------------
+
+  });
+
+    //function verification() {
+    //  let firstname = document.getElementById("firstname").value; 
+    //    if(firstName = /[azA-Z]*/.test(value)){
+     //     alert("ok");  
+     //   }
+    
+
+    //  let name = document.getElementById("name").value;
+    //  if(name="") {
+    //    alert('Vous devez compléter votre nom !');      
+    //    document.getElementById("name").style.borderColor="red";
+    //    document.getElementById("name").style.color="#FFF";         
+    //  }
+    
+    //  let adress = document.getElementById("adress");
+    //  if(adress=="") {
+    //    alert('Vous devez compléter votre adresse !');      
+    //    document.getElementById('idNom').style.borderColor="red";
+    //    document.getElementById('idNom').style.color="#FFF";  
+
+    //  let adress = document.getElementById("adress").value;
+             
+    //  }
+    //  let city = document.getElementById("city").value;
+      
+    // let mail = document.getElementById("mail").value;
+    
+
+  //  let textInput = ["firstName", "name","city"];
+  //    if (textInput.value === "") {
+  //      alert("champ vide");
+  //    }
+//
+  //  let contact= [firstname, name, adress, city, mail];
+    
+  //  console.log("contact = ");
+  //  console.table(contact);
+  //  }
+    
+    // valid alpha
+  //  function isAlpha(value){
+  //      return /[azA-Z]*/.test(value);
+  //  };
+      
+    //valid Email
+  //  function validateEmail(email) {
+  //    const rep = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //    return rep.test(String(email).toLowerCase());
+  //  };
+
+  //  function isAdress(value){
+  //    return /\w+/.test(value);
+  //  }
+    //validFormulaire()
+
+    
+  //  alert("formulaire non valid");
+     
+     //---------------------------------
+        // ----- regroupement contact et id-panier pour n) de commande
+      //let packServer = [contact, panierTotal[0]];
+      //if ( contact = []) {    //  -------------------------- ne fonctionne pas 
+      //alert("defaut : formulaire vide ou incomplet");  
+
+
+
+      //---------------
+      
+      // stockage local contact
+     
 
       
+      
 
-  //}
-});
-  
+    
+
+    
 
 
 
@@ -281,27 +387,6 @@ function envoyerServer () {
 
   ///  validation form ++
 
-function validFormulaire() {
-  'use strict';
-  document.getElementById("containerFormulaire")
-
-  console.log(containerFormulaire);
-
-  document.addEventListener("load", function () {
-
-    let forms = document.getElementsByClassName("needs-validation");
-    let validation = Array.prototype.filter.call(forms, function(form) {
-
-    form.addEventListener("submit", function(event) {
-      if (form.checkValidity() === false) {
-          event.preventDefault();
-        event.stopPropagation();
-      }
-      form.classList.add("was-validated");
-    }, false);
-  });
-}, false);
-};
       
       
           
@@ -461,5 +546,18 @@ function validFormulaire() {
 //      }
 //    });
 
+//  alert("appel supprimer Produit");
+      //document.getElementsByClassName("containerProduit");
+      //containerProduit.removeChild(divContenu, divPrice);             
+      //document.getElementsByClassName("divContenu");
+      //divContenu.removeChild(image, titre, divVarnish);
 
 
+
+      
+ 
+  //  supprimerProduit(); 
+  //  elt = panier[s]; 
+  //  eltId = elt[0] ; 
+  //  const btnSuppId = [];
+  //  btnSuppId.push(eltId);    
