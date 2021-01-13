@@ -24,6 +24,7 @@ console.log("------------------------------------------");
   //------------------------boucle pour affichage panier dand HTML    -----
 for (i = 0; i < (panier.length); i++) {  
   let panierTemp = panier[i];
+
   ajouterChoixProduit();
   //---------------------------------------------------------
    
@@ -170,7 +171,7 @@ function calculerPrix() {
 };
 
 
-  //prixTotal = parseInt(elt[5], 10); // conversion string en Int
+  
 console.log("envoi prixTotal dans LocalStorage");
 
 localStorage.setItem("prixTotal", prixTotal);  //prix Total dans le localStorage
@@ -178,13 +179,7 @@ total = document.getElementById("prixTotal");
 total.innerHTML = "Total de votre sélection : " + prixTotal/100 + ".00 €";  //affichage DOM prix Total 
 
 
-    // ---------------------- Test post avec les produits et leur Id ------
-
-
-    //tempPrix = elt[5].toString();
-    //console.log("tempPrix = " + tempPrix)  
-
-
+    
 envoyerServer(); // panierTotal dans le localStorage
 
  // ------------ stockage --------
@@ -195,34 +190,9 @@ function envoyerServer () {
 };
 
 
-//get("http://localhost:3000/api/furniture/order:_id")
- // .then(console.log("test import get /order"));
-
-
-
-//postProducts();
 
 //function postProducts(){   
 
-  let products=[];
-  extractId();
-  //console.log("products = " + products);
-  localStorage.setItem("products", JSON.stringify(products)); 
- 
-  function extractId() {
-    for (let p = 0; p < panier.length; p++) {   //boucle extraction Id des produits selectionnés 
-      elt = panier[p]; 
-      eltId = elt[0] ;  
-      products.push(eltId); // push des Id dans products
-    } 
- };
- 
- //localStorage.setItem("products", products);  
- //console.log("envoi products (tableau Id) au server distant ");
-
- localStorage.getItem("table products", products);
- console.log("products = " + products) ;
- 
   //post("http://localhost:3000/api/furniture/order", products); 
   //alert(" products envoyé server");
 //};
@@ -234,7 +204,6 @@ function envoyerServer () {
 
   //------------------------ formulaire contact ---------------------------------------------- 
 
-  // Envoi contact dans localStorage   ----------
   
      //----------------------------- ne foncvtionne pas   
   
@@ -242,9 +211,10 @@ function envoyerServer () {
   btnContact.addEventListener("click", function () {
     
     //verification();
-    if (validFormulaire()) {
-      
-      console.log("oups")
+    validFormulaire();
+    alert("fin de test formulaire contact");
+
+      console.log("formulaire contact")
       let firstname = document.getElementById("firstname").value; 
       let name = document.getElementById("name").value;
       let adress = document.getElementById("adress").value;
@@ -254,28 +224,56 @@ function envoyerServer () {
       let contact= [firstname, name, adress, city, mail];
 
       //--------------------------------------
+      alert("stockage formulaire contact");
+
       localStorage.setItem("contact", JSON.stringify(contact)); 
         alert("envoi contact dans localStorage OK");
-      
-      
-            // envoi server jsonBody
-      
-        jsonBody = [contact, products];
-        localStorage.setItem("jsonBody", jsonBody);
-      
-        console.log("jsonBody = " + jsonBody);   
-            
-        alert(" !!! Envoi server distant");
-      
-        post("http://localhost:3000/api/furniture/order", jsonBody);       
+
+
+
+        //---------------------
         
-        alert("Envoyé server distant ok");        
-        window.location.href = "confirm.html";
+        let products=[];
+        extractId();
+        //console.log("products = " + products);
+        localStorage.setItem("products", JSON.stringify(products)); 
+      
+        function extractId() {
+          for (let p = 0; p < panier.length; p++) {   //boucle extraction Id des produits selectionnés 
+            elt = panier[p]; 
+            eltId = elt[0] ;  
+            products.push(eltId); // push des Id dans products
+          } 
+      };
+ 
+    //localStorage.setItem("products", products);  
+    //console.log("envoi products (tableau Id) au server distant ");
+
+    localStorage.getItem("table products", products);
+    console.log("products = " + products) ;
+ 
       
       
-    };
+        // envoi server jsonBody
+  
+    jsonBody = [contact, products];
+    localStorage.setItem("jsonBody", jsonBody);
+  
+    console.log("jsonBody = " + jsonBody);   
+        
+    alert(" !!! Envoi server distant");
+  
+    post("http://localhost:3000/api/furniture/order", jsonBody);       
     
-      function validFormulaire() {
+    alert("Envoyé server distant ok");        
+    window.location.href = "confirm.html";
+      
+      
+    
+    
+      
+    //--------------------------------------------
+      (function validFormulaire() {
           "use strict";  // cadrage pour compatibilité 
           //window.location = "panier.html";
         window.addEventListener("load", function() {
@@ -296,10 +294,14 @@ function envoyerServer () {
             }, false);
           });
         }, false);
-      }(alert("fin de test"));
-    //--------------------------------------------
+      }());
+
 
   });
+   
+    
+
+  //--------------------------------- boite à outils  ------------
 
     //function verification() {
     //  let firstname = document.getElementById("firstname").value; 
@@ -368,28 +370,6 @@ function envoyerServer () {
 
 
       //---------------
-      
-      // stockage local contact
-     
-
-      
-      
-
-    
-
-    
-
-
-
-
- 
-// formulaire de commande -----------------------------------------------//
-
-  ///  validation form ++
-
-      
-      
-          
 //    });
   
 

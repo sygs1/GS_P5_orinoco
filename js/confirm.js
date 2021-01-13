@@ -5,6 +5,7 @@
 function afficherConfirmation(){   
     let panierDefinitif = JSON.parse(localStorage.getItem("panierTotal"));
     let prixTotal = JSON.parse(localStorage.getItem("prixTotal"));
+    
 
     const confirmId = panierDefinitif[0];
 
