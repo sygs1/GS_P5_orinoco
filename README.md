@@ -2,7 +2,7 @@
 
 Projet 5 OpenClassRooms - site ecommenrce Orinoco (frontEnd)
 Server fourni = JWDP5(backend)
-objectif de l'exercice, appre,tissage du JavaScript
+objectif de l'exercice, apprentissage du JavaScript
 
 choix des articles = meubles en chêne
 
