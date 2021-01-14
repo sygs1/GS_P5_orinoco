@@ -6,4 +6,4 @@ objectif de l'exercice, apprentissage du JavaScript
 
 choix des articles = meubles en chêne
 
-utilisation de Sass et initiation Bootstrap (cours conseillé par OC.
+utilisation de Sass et initiation Bootstrap (cours conseillé par OC).
