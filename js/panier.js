@@ -1,4 +1,5 @@
 
+
 // destockage produit selctionné  - fonctionne
 panier=[];
 panier = JSON.parse(localStorage.getItem("panier"));
@@ -84,18 +85,27 @@ for (i = 0; i < (panier.length); i++) {
 btnSupp.addEventListener("click", function () { 
   
   btnSuppId= panierTemp[0];
-  console.log("panier =");
-  console.table(panier);
-  console.log("btnSuppId =");
-  console.log(btnSuppId);
+
+  //console.log("panier =");
+  //console.table(panier);
+  //console.log("btnSuppId =");
+  //console.log(btnSuppId);
 
   //for (i = 0; i < (panier.length); i++) {  
   //  let panierTemp = panier[i];
-  console.log("panierTemp =");
-    console.log(panierTemp);
+  console.log("panierTemp =" + panierTemp);
+    //console.log(panierTemp);
 
-  const filteredPanier = panier[0].filter( (panierItem, index) => {  
-    if (panierItem.id === "btnSuppId")     
+    console.log("extraction index panierTemp = " + panier.indexOf(panierTemp));
+
+  //const found = panier.find(element => element = [panierTemp].index);
+  //console.log("found -->" + found);
+
+
+
+  const filteredPanier = panier.filter( (panierItem, index ) => { 
+    console.log(panierItem.id)      
+    if (panierItem.id === panier.indexOf(panierTemp))   
         return false;
       return true;
     } 
@@ -106,9 +116,9 @@ btnSupp.addEventListener("click", function () {
     console.table(filteredPanier);
     console.log("-------------");
   //}  //panier = filteredPanier;
-     
+    // panier = filteredPanier
 
-   document.location.reload();
+  // document.location.reload();
 
   //------------Maj Panier avec produit supprimé ----------------------------   
   localStorage.setItem("panier", JSON.stringify(panier)); // MaJ
@@ -232,7 +242,16 @@ function envoyerServer () {
 
 
   //------------------------ formulaire contact ---------------------------------------------- 
+    //--------------------------- test sur valeurs formulaire
+    function validEmail(email) {
+      const rep = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+     return rep.test(String(email).toLowerCase());
+   };
 
+
+    function isString(value){
+    return /[azA-Z]*/.test(value);
+    };
   
      //----------------------------- ne foncvtionne pas   
   
@@ -240,64 +259,67 @@ function envoyerServer () {
 
       const formulaire = document.getElementById("formulaireContact");
       formulaire.addEventListener ("submit", (event)=>  {
-        console.log(formulaire);
-        event.preventDefault()
-      })
+        event.preventDefault(); // écoute evt et continue
 
+        "use strict";         
+        let forms = document.getElementsByClassName("needs-validation"); //recup tous les formulaires
+          var validation = Array.prototype.filter.call(forms, function(form) { //créé une table avec les "needs-validation"
+      
+         form.addEventListener("submit", function(event) { //écoute saisies
+            if (form.checkValidity() === false) {    //check = return true si donées valides 
 
+      
+               event.preventDefault(); // écoute evt et continue
+                event.stopPropagation(); // arrête là
+              }
+             form.classList.add("was-validated");
+            }, false);
+          }, false);
 
-  const btnContact = document.getElementById("btnContact");
-  btnContact.addEventListener("click", function () {
-
-    
-    
-    //verification();
-    //validFormulaire();
-    //  ----------------------------------------------------
-  //   (function validFormulaire() {
-          //"use strict";  // cadrage pour compatibilité 
-          //window.location = "panier.html";
-  //      window.addEventListener("load", function() {
-          //document.getElementById("containerFormulaire")
-          //console.log(containerFormulaire);
-          //document.addEventListener("load", function () {
- //           let forms = document.getElementsByClassName("needs-validation"); //recup tous les formulaires
         
-  //        var validation = Array.prototype.filter.call(forms, function(form) { //créé une table avec les "needs-validation"
-        
-  //          form.addEventListener("submit", function(event) { //écoute saisies
-  //            if (form.checkValidity() === false) {    //check = return true si donées valides 
-        
-  //              event.preventDefault(); // écoute evt et continue
-  //              event.stopPropagation(); // arrête là
-  //            }
-  //            form.classList.add("was-validated");
-  //          }, false);
-   //       });
-  //      }, false);
-  //    });
-  //    (alert("fin de test formulaire contact"));
-
-
-    //  ----------------------------------------------------
-        
-        console.log("formulaire contact")
+       //---------------------
+   
+       
         let firstname = document.getElementById("firstname").value; 
         let name = document.getElementById("name").value;
         let adress = document.getElementById("adress").value;
         let city = document.getElementById("city").value;
+        //----
+        if (isString(firstname)) {
+          }else{
+          alert("Prénom = non valide");
+          border: red;
+          };
+        if (isString(name)) {
+          }else{
+          alert("Nom =  non valide");
+          border: red;
+
+        };
+        if (isString(city)) {   
+          }else{
+          alert("Ville non valide");
+          border: red;
+          };
+        //----
         let mail = document.getElementById("mail").value;
-  
+        if (validEmail(mail)) {
+          }else{
+          alert("Email non valide");
+        };
+        
         let contact= [firstname, name, adress, city, mail];
-  
+
+        console.log("formulaire contact peuplé")
+     
         //--------------------------------------
-  //      alert("stockage formulaire contact");
+       // alert("stockage formulaire contact");
   
         localStorage.setItem("contact", JSON.stringify(contact)); 
-   //     alert("envoi contact dans localStorage OK");
-        
 
-
+      
+  
+ 
         //--------------------- prepa Products pour joindre à la requete POST
         
         let products=[];
@@ -314,32 +336,29 @@ function envoyerServer () {
           } 
       };
  
-    //localStorage.setItem("products", products);  
-    //console.log("envoi products (tableau Id) au server distant ");
+
 
     localStorage.getItem("table products", products);
-//    console.log("products = " + products) ;
- 
-      
-      
+          
+    localStorage.getItem("contact", contact); 
         // envoi server jsonBody
   
     jsonBody = [contact, products];
-    localStorage.setItem("jsonBody", jsonBody);
+    localStorage.setItem("jsonBody", JSON.stringify(jsonBody));
   
     console.log("jsonBody = " + jsonBody);   
-        
+   
 //    alert(" !!! Envoi server distant");
   
     post("http://localhost:3000/api/furniture/order", jsonBody);   
+  
+    window.location.href = "confirm.html";
+  }); 
 
-//    window.location.href = "confirm.html";
-
- //   alert("Envoyé server distant ok");        
    
    
       
-      
+
       
     
     
@@ -348,7 +367,7 @@ function envoyerServer () {
       
 
 
-  });
+ 
    
     
 

@@ -1,17 +1,11 @@
-/*
 @font-face {
-    font-family: "Roboto";
-    src: url("./base/polices/Roboto/Roboto-Regular.ttf") format("truetype");
+  font-family: "Roboto";
+  src: url("./base/polices/Roboto/Roboto-Regular.ttf") format("truetype");
 }
-
 @font-face {
-    font-family: "Shrikhand";
-    src: url("./base/polices/shrikhand/Shrikhand-Regular.otf");  
+  font-family: "Shrikhand";
+  src: url("./base/polices/shrikhand/Shrikhand-Regular.otf");
 }
-
-
-
-//*************************************************************************/
 .vewport {
   width: auto;
 }
