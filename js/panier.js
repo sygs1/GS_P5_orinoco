@@ -104,21 +104,20 @@ btnSupp.addEventListener("click", function () {
 
 
   const filteredPanier = panier.filter( (panierItem, index ) => { 
-    console.log(panierItem.id)      
-    if (panierItem.id === panier.indexOf(panierTemp))   
+      
+    if (panierItem === panierTemp)   
         return false;
       return true;
     } 
   )
-      
-   // );
+     // );
    console.table("filteredPanier"); 
     console.table(filteredPanier);
     console.log("-------------");
   //}  //panier = filteredPanier;
-    // panier = filteredPanier
+     panier = filteredPanier
 
-  // document.location.reload();
+    document.location.reload();
 
   //------------Maj Panier avec produit supprimé ----------------------------   
   localStorage.setItem("panier", JSON.stringify(panier)); // MaJ
