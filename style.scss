@@ -35,8 +35,9 @@ margin:0 auto;
 }
 
 body{
-    background-image: url(./images/texture2-background-min.jpg) ;
-}   
+    background-image: url(./images/chene.jpg) ;
+    
+}  
     /***************   container pour articles avec photos  ***************/
     #headerRowFirst{
        
@@ -58,7 +59,7 @@ body{
     
     .jumbotron{
         width:95%;
-        height: 200px;
+        max-height: 200px;
         margin:0 auto;
             & h2{
                 color:white;

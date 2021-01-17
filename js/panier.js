@@ -317,7 +317,7 @@ function envoyerServer () {
   
     post("http://localhost:3000/api/furniture/order", jsonBody);   
   
-   //window.location.href = "confirm.html";
+   window.location.href = "confirm.html";
 
   }); 
 
