@@ -21,8 +21,7 @@ body {
 }
 
 /***************   container pour articles avec photos  ***************/
-.containerHeader {
-  width: 95%;
+#headerRowFirst {
   margin: 0 auto;
 }
 

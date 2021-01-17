@@ -16,7 +16,7 @@ function ajoutProduit(responseProduit, section) {
 
     const figCaption = document.createElement("div");
     figCaption.innerHTML = responseProduit.description;
-    div.setAttribute("class", "card-body");
+    div.setAttribute("class", "card-body bg-light");
 
     const varnish = document.createElement("p");
     varnish.innerHTML = "Choix finition :" + responseProduit.varnish;
@@ -55,7 +55,7 @@ get("http://localhost:3000/api/furniture")
     //console.log(responseProduit)
 
     const section = document.getElementById("containerArticles");
-    section.setAttribute("class", "card")
+    section.setAttribute("class", "card bg-transparent")
     section.setAttribute("width", "40%");
 
     console.log(section);
