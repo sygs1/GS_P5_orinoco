@@ -34,13 +34,19 @@ margin:0 auto;
 
 }
 
-   
+body{
+    background-image: url(./images/texture2-background-min.jpg) ;
+}   
     /***************   container pour articles avec photos  ***************/
     .containerHeader{
         width:95%;
        margin: 0 auto;
        
     }
+
+
+
+    
     .containerFooter div{ 
         width:95%;       
         margin:0 auto;
@@ -144,5 +150,9 @@ margin:0 auto;
             & div{
                 width: 100%;
             }
+    }
+
+    .imageProduit{
+        display:none;
     }
 }

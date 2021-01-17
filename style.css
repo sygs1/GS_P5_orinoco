@@ -16,6 +16,10 @@ body {
   margin: 0 auto;
 }
 
+body {
+  background-image: url(./images/texture2-background-min.jpg);
+}
+
 /***************   container pour articles avec photos  ***************/
 .containerHeader {
   width: 95%;
@@ -99,6 +103,10 @@ body {
   }
   #containerProduit div {
     width: 100%;
+  }
+
+  .imageProduit {
+    display: none;
   }
 }
 

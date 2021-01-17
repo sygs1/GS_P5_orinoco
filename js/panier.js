@@ -199,12 +199,12 @@ function envoyerServer () {
         
 
         // fonction vérification saisies -- 
-        function Verification() {
+        function verifierSaisieFormulaire() {
           // Contrôle saisies
           if(firstname==""){
             alert("Vous devez compléter votre Prénom !");
             document.getElementById("firstname").style.backgroundColor="red";
-            document.getElementById("firstname").style.color="#FFF";
+            document.getElementById("firstname").style.color="white";
             // Permet de bloquer l'envoi du formulaire
             return false;
             }else{
@@ -214,53 +214,65 @@ function envoyerServer () {
           if(name==""){
               alert("Vous devez compléter votre Nom !");
               document.getElementById("name").style.backgroundColor="red";
-              document.getElementById("name").style.color="#FFF";
+              document.getElementById("name").style.color="white";
               // Permet de bloquer l'envoi du formulaire
               return false;
               }else{
               document.getElementById("name").style.backgroundColor="#9C6";
-            }
+          }
   
-            if(adress==""){
-                alert("Vous devez compléter votre adresse !");
-                document.getElementById("adress").style.backgroundColor="red";
-                document.getElementById("adress").style.color="#FFF";
-                // Permet de bloquer l'envoi du formulaire
-                return false;
-                }else{
-                document.getElementById("adress").style.backgroundColor="#9C6";
-              }
+          if(adress==""){
+              alert("Vous devez compléter votre adresse !");
+              document.getElementById("adress").style.backgroundColor="red";
+              document.getElementById("adress").style.color="white";
+              // Permet de bloquer l'envoi du formulaire
+              return false;
+              }else{
+              document.getElementById("adress").style.backgroundColor="#9C6";
+          }
   
-              if(city==""){
-                  alert("Vous devez compléter votre Ville !");
-                  document.getElementById("city").style.backgroundColor="red";
-                  document.getElementById("city").style.color="#FFF";               
-                  return false;
-                  }else{
-                  document.getElementById("city").style.backgroundColor="#9C6";
-                }
-                // Contrôle sur l'email
-              if(mail==""){
-                alert("Vous devez compléter votre adresse email");
-                document.getElementById("mail").style.backgroundColor="red";
-                document.getElementById("mail").style.color="#FFF";
-                return false;
-                }else{
-                document.getElementById("mail").style.backgroundColor="#9C6";
-                }
-             
+          if(city==""){
+              alert("Vous devez compléter votre Ville !");
+              document.getElementById("city").style.backgroundColor="red";
+              document.getElementById("city").style.color="white";               
+              return false;
+              }else{
+              document.getElementById("city").style.backgroundColor="#9C6";
+          }
+            // Contrôle sur l'email
+          if(mail==""){
+            alert("Vous devez compléter votre adresse email");
+            document.getElementById("mail").style.backgroundColor="red";
+            document.getElementById("mail").style.color="white";
+            return false;
+            }else{
+            document.getElementById("mail").style.backgroundColor="#9C6";
+
+          
+          }
+          
             }; 
             // ---- fonction contrôle Email
-            function validateEmail(mail) {
-              if ( re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i){
-              return false;
-              }else{re.test(mail);
-              }}
+            function validMail() {
+              if (/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/.test(mail))
+              {
+                
+                return true;
+                
+                } else {
+                 alert("veuillez utiliser une adresse mail valide");
+                 document.getElementById("mail").style.backgroundColor="red";
+                 document.getElementById("mail").style.color="white";
+                  return false;
+                  
+              }
+            }
+        
     
 
-        Verification();
+        verifierSaisieFormulaire();
 
-        validateEmail(mail);
+        validMail();
     
        //--------
        
@@ -295,7 +307,7 @@ function envoyerServer () {
     localStorage.getItem("contact", contact); 
         // envoi server jsonBody
   
-    jsonBody = {contact} + {products};
+    jsonBody = [{contact} , {products}];
 
     localStorage.setItem("jsonBody", JSON.stringify(jsonBody));
   
@@ -305,7 +317,7 @@ function envoyerServer () {
   
     post("http://localhost:3000/api/furniture/order", jsonBody);   
   
-   window.location.href = "confirm.html";
+   //window.location.href = "confirm.html";
 
   }); 
 
