@@ -45,11 +45,11 @@ function ajoutProduit(responseProduit, section) {
 };
 
 
-
+//get("http://localhost:3000/api/furniture")
 
 console.log("// appel server // ");
 
-get("http://oc-devweb-p5-api.mathisbarre.com/api/furniture")
+get("https://api-oc5.herokuapp.com/api/furniture")
 .then (function (responseProduit){
 
     //console.log(responseProduit)

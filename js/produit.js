@@ -13,7 +13,7 @@ function getId(){
 const id = getId();
 
 // recup infos server
-get("http://oc-devweb-p5-api.mathisbarre.com/api/furniture/" + id)
+get("https://api-oc5.herokuapp.com/api/furniture/" + id)
 .then(function(response) {     
     
     ///// Declarations
