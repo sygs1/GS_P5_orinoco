@@ -49,7 +49,7 @@ function ajoutProduit(responseProduit, section) {
 
 console.log("// appel server // ");
 
-get("http://oc-devweb-p5-api.mathisbarre.com/api/furniture")
+get("https://oc-devweb-p5-api.herokuapp.com/api/furniture")
 .then (function (responseProduit){
 
     //console.log(responseProduit)

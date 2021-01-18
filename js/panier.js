@@ -305,7 +305,7 @@ function envoyerServer () {
    
 //    alert(" !!! Envoi server distant");
   
-    post("http://oc-devweb-p5-api.mathisbarre.com/api/furniture/order", jsonBody);   
+    post("https://oc-devweb-p5-api.herokuapp.com/api/furniture/order", jsonBody);   
   
    //window.location.href = "confirm.html";
 
