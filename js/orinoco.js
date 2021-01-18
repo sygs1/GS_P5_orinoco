@@ -6,7 +6,7 @@ function ajoutProduit(responseProduit, section) {
 
     const div = document.createElement("div");
     div.innerHTML = responseProduit.name;
-    div.setAttribute("class", "card-title");
+    div.setAttribute("class", "card-title ");
         
     const img = document.createElement("img");
     img.setAttribute("class", "card-img");
@@ -16,7 +16,7 @@ function ajoutProduit(responseProduit, section) {
 
     const figCaption = document.createElement("div");
     figCaption.innerHTML = responseProduit.description;
-    div.setAttribute("class", "card-body bg-light");
+    div.setAttribute("class", "card-body bg-light font-weight-bold");
 
     const varnish = document.createElement("p");
     varnish.innerHTML = "Choix finition :" + responseProduit.varnish;

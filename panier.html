@@ -29,18 +29,18 @@
             </a>
             </div>
            
-            <nav class="navbar navbar-dark bg-info navbar-expand-lg">
+            <nav class="navbar navbar-light bg-transparent navbar-expand-lg">
                 <a class="navbar-brand" href="#"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse font-weight-bold" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li  class= "nav-item active" >
-                            <a class="navbar-brand" href="index.html">Accueil</a>
+                            <a class="navbar-brand" href="panier.html">Panier</a>
                         </li>                       
                         <li class="nav-item">
-                            <a class="nav-link" href="panier.html">Panier</a>
+                            <a class="nav-link" href="index.html">Accueil</a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="confirm.html">Commande</a>
@@ -73,17 +73,21 @@
 
    <div class="container align-content-around">
         <div class="row w-100 border-bottom border-info">
-            <div class="col-12 w-100 d-flex justify-content-between">
+            <div class="col-12 ml-3 w-100 d-flex justify-content-between font-weight-bold">
                 <p class="col-6">produit(s) préféré(s)</p>
-                <p class="col-4">finition choisie</p>
+                <p class="col-4 text-center">finition choisie</p>
                 <p class="col-2">prix unitaire</p>
             </div>    
             
         </div>
        
-        <div class="col-12 w-100 d-rows" id="containerProduit">
+        <div class="card-body col-12 w-100 d-rows mb-2" id="containerProduit">
+            <div class="card-body w-100 bg-info rounded mb-2" id="cardPanier">
+
+            </div>
             
-                <!-- div crées en JS -->
+        <!-- div crées en JS -->
+       
 
 
 
@@ -92,7 +96,7 @@
                 <!-- div crées en JS -->
 
         </div>  
-        <div class="row w-100 d-flex justify-content-end mr-3 border-top border-info" id="prixTotal">
+        <div class="row w-100 d-flex justify-content-end mr-3 border-top border-info font-weight-bold" id="prixTotal">
            
                 <!-- div crées en JS -->
 
@@ -111,7 +115,7 @@
 
         <form class="needs-validation" novalidate id="formulaireContact">
 
-            <div class="form-row ">
+            <div class="form-row font-weight-bold ">
                 <div class="col-md-4 mb-3">
                     <label for="prenom">Prénom *</label>
                     <input type="text" class="form-control" id="firstname" placeholder="Gilles" required>
@@ -131,7 +135,7 @@
                     <div class="invalid-feedback">Valeur incorrecte</div>
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row font-weight-bold">
                 <div class="col-md-6 mb-3">
                     <label for="ville">Ville *</label>
                     <input type="text" class="form-control" id="city" placeholder="Bordeaux" required>
@@ -151,12 +155,11 @@
 
         </form>
     </div>
-<
-             <!--    ************* footer **************** -->
-    
-    </div>
-    
 
+  
+
+
+             <!--    ************* footer **************** -->
     <div class="containerFooter">
         <div class="row bg-info text-decoration-none text-center">
             <nav class="navbar navbar-expand bg-info w-100 ">               

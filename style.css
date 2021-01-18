@@ -17,7 +17,7 @@ body {
 }
 
 body {
-  background-image: url(./images/chene.jpg);
+  background-image: url(./images/chene2.jpg);
 }
 
 /***************   container pour articles avec photos  ***************/
@@ -37,9 +37,10 @@ body {
   width: 95%;
   max-height: 200px;
   margin: 0 auto;
+  border-radius: 25px;
 }
 .jumbotron h2 {
-  color: white;
+  color: black;
 }
 
 .btn {
@@ -59,8 +60,14 @@ body {
 #containerArticles div {
   margin: 20px 20px;
   padding: 20px 20px;
-  border: 2px solid grey;
-  box-shadow: 10px 5px 5px grey;
+  border: 1px solid #cedbddd3;
+  box-shadow: 10px 5px 5px #cedbddd3;
+  border-radius: 15px;
+}
+#containerArticles div img {
+  border-radius: 25px;
+  border: 1px solid #cedbddd3;
+  box-shadow: 5px 5px 5px #cedbddd3;
 }
 
 .containerFormulaire {
@@ -71,9 +78,19 @@ body {
   margin: 0 auto;
   min-height: 10em;
 }
+#containerProduit img {
+  border-radius: 25px;
+  border: 1px solid #cedbddd3;
+  box-shadow: 10px 5px 5px #cedbddd3;
+}
 
 .needs-validation {
   margin: auto;
+}
+
+.option {
+  border-radius: 15px;
+  background-color: yellow;
 }
 
 /* PAGE PANIER  */

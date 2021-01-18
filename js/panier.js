@@ -33,26 +33,26 @@ for (i = 0; i < (panier.length); i++) {
     
 
     divContenu = document.createElement("div");
-    divContenu.setAttribute("class", "row w-100");
+    divContenu.setAttribute("class", "row w-100 font-weight-bold");
 
     divTitre =  document.createElement("div");
-    divTitre.setAttribute("class", "divTitre col-3");
+    divTitre.setAttribute("class", "divTitre col-4 mt-3 font-weight-bold");
    
     titre = document.createElement("p");
     titre.setAttribute("class", "titre");
     titre.innerHTML = panierTemp[1];
 
     image = document.createElement("img");
-    image.setAttribute("class", "imageProduit");
+    image.setAttribute("class", "imageProduit mt-3 ml-3 ");
     image.setAttribute("src", panierTemp[2]);
-    image.setAttribute("width","10%");
+    image.setAttribute("width","20%");
 
     divVarnish = document.createElement("div");
-    divVarnish.setAttribute("class", "varnish col-5 text-center");
+    divVarnish.setAttribute("class", "varnish col-4 text-center mt-3 font-weight-bold");
     divVarnish.innerHTML = ("data-id", panierTemp[4]);
 
     divPrice = document.createElement("div");
-    divPrice.setAttribute("class", "price col-12 text-right border-bottom border-left border-info");
+    divPrice.setAttribute("class", "price mb-2 col-12 text-right border-bottom border-left font-weight-bold border-dark");
     divPrice.innerHTML= ("data-id", panierTemp[5]/ 100 + ".00 €");
    
     //bouton suppression ligne
@@ -61,9 +61,10 @@ for (i = 0; i < (panier.length); i++) {
     btnSupp.innerHTML = "supprimer";
     btnSupp.setAttribute = ("data-id", panierTemp[0]);
 
-   
-    containerProduit.appendChild(divContenu);
-    containerProduit.appendChild(divPrice); 
+    document.getElementById("cardPanier");
+
+    cardPanier.appendChild(divContenu);
+    cardPanier.appendChild(divPrice); 
 
     divContenu.appendChild(image);
     divContenu.appendChild(divTitre); 
@@ -167,17 +168,6 @@ function envoyerServer () {
      //     return false;
       //    }
       //  }
-      
-      
-
-     
-      
-        
-
-
-        
-        
-        
         
           //--------------------------- SUBMIT
 
@@ -317,7 +307,7 @@ function envoyerServer () {
   
     post("http://localhost:3000/api/furniture/order", jsonBody);   
   
-   window.location.href = "confirm.html";
+   //window.location.href = "confirm.html";
 
   }); 
 

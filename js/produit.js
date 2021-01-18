@@ -26,16 +26,20 @@ get("http://localhost:3000/api/furniture/" + id)
     const image = document.createElement("img");
     image.innerHTML = response.imageUrl;
     image.setAttribute("src", response.imageUrl);
-    image.setAttribute("class","card-img w-75");
+    image.setAttribute("class","card-img w-100");
 
     const figCaption = document.createElement("div");
     figCaption.innerHTML = response.description;
     figCaption.setAttribute("class","h6 justify-content-center ");
 
     const varnish = document.createElement("select");
+    
 
         const option = document.createElement("option");
-        option.innerHTML = "Votre finition préférée";
+        option.innerHTML = "N'oubliez pas votre finition préférée";
+        option.setAttribute = ("class", "option");
+        
+       
         varnish.appendChild(option);
 
         for (let i = 0; i < response.varnish.length; i++) {
@@ -103,8 +107,6 @@ get("http://localhost:3000/api/furniture/" + id)
        
         // envoi au local storage
         function ajoutLocal(varnishSelected){
-            
-         
 
             panier.push([id, response.name, response.imageUrl, response.description, varnishSelected, response.price]);
             localStorage.setItem("panier", JSON.stringify(panier));
