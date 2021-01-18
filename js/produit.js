@@ -13,7 +13,7 @@ function getId(){
 const id = getId();
 
 // recup infos server
-get("http://localhost:3000/api/furniture/" + id)
+get("http://oc-devweb-p5-api.mathisbarre.com/api/furniture/" + id)
 .then(function(response) {     
     
     ///// Declarations

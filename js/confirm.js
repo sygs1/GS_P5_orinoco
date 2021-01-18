@@ -10,7 +10,7 @@ function afficherConfirmation(){
     const confirmId = panierDefinitif[0];
 
     const DivRecapCommande = document.getElementById("recap");
-    DivRecapCommande.setAttribute("class", "row w-100 text-center");
+    DivRecapCommande.setAttribute("class", "row w-100  ml-3 text-center");
     
     const messageRecap = document.createElement("h5");
     messageRecap.setAttribute("class","col-12 text-center");

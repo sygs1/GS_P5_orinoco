@@ -16,7 +16,7 @@ function get(url) {
     };
     request.send();
 
-    console.log("retour_get"); 
+    console.log("envoi GET"); 
  });
  return promise; 
 
@@ -40,6 +40,7 @@ function post(url,jsonBody) {
 
                 }else{
                 reject(request.status);
+
                 }
             }
         };
