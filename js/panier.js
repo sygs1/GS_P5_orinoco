@@ -1,15 +1,14 @@
 
-
-// destockage produit selctionné  - fonctionne
+// destockage produit-s selctionné-s  
 panier=[];
 panier = JSON.parse(localStorage.getItem("panier"));
 
 
 //controle si panier vide  - ne fonctionne pas
 if (panier === null){
-    panier = [];
-      console.log("panier vide");
-      
+  alert("votre panier est vide");
+  } else {
+    alert("pour continuer vos achats = sélectionnez Accueil");
 };
   
   //---------------- verif nombre de produit dans panier -----------------------------------------
@@ -26,11 +25,10 @@ console.log("------------------------------------------");
 for (i = 0; i < (panier.length); i++) {  
   let panierTemp = panier[i];
   
-  ajouterChoixProduit();
+
   //---------------------------------------------------------
    
-  function ajouterChoixProduit (){
-    
+function ajouterChoixProduit (){
 
     divContenu = document.createElement("div");
     divContenu.setAttribute("class", "row w-100 font-weight-bold");
@@ -76,514 +74,209 @@ for (i = 0; i < (panier.length); i++) {
 
     
   }; //------- fin fonction ajoutProduit--------------------------
-  
+  //------- Appel fonction ajoutProduit-
+ajouterChoixProduit();
 
-btnSupp.addEventListener("click", function () { 
-  
-  btnSuppId= panierTemp[0];
-  console.log("panierTemp =" + panierTemp);   
 
-    console.log("extraction index panierTemp = " + panier.indexOf(panierTemp));
-
+// écoute bouton supprimer = enlever un produit du panier
+btnSupp.addEventListener("click", function () {   
+      // recherhce par filtrage dans l'array panier
   const filteredPanier = panier.filter( (panierItem, index ) => { 
       
-    if (panierItem === panierTemp)   
-        return false;
-      return true;
-    } 
-  )
-     //----------- Filtre élément supprimé 
-   console.table("filteredPanier"); 
-    console.table(filteredPanier);
-    console.log("-------------");
- 
-     panier = filteredPanier // attribution panier filtré au panier
-
-    document.location.reload(); // refresh page
-
-  //------------Maj Panier avec produit supprimé ----------------------------   
-  localStorage.setItem("panier", JSON.stringify(panier)); // MaJ
-  console.log("MàJ panier ds localStorage" + panier); 
-
-  //-------------------------------
+      if (panierItem === panierTemp)   
+          return false; // enlève le produit correspondant à la sélection
+        return true; // conserve les autres
+      } 
+    )
+      //----------- vérification suppression produit 
+    console.table("filteredPanier"); 
+      console.table(filteredPanier);
+      console.log("-------------");
   
-    })      
-  };
- 
+      panier = filteredPanier // attribution panier filtré au panier
+
+      document.location.reload(); // refresh page
+
+    //------------Maj Panier avec produit supprimé ----------------------------   
+    localStorage.setItem("panier", JSON.stringify(panier)); // MaJ
+    console.log("MàJ panier ds localStorage" + panier); 
+  })      
+};
+
     
-// ----------------------------- stockage panierTotal -----------------------------------------------
+// ------------ définition et stockage local du panierTotal -------
 let panierTotal = panier;
 localStorage.setItem("panierTotal", JSON.stringify(panierTotal)); 
 
 
-    // --------- calculer prix total ------------------------ a voir avec plusieurs produits dans panier
-  
-let  prixTotal= 0;
- calculerPrix();
+let  prixTotal= 0; // réinit prix
 
-function calculerPrix() {  
- 
-  for (let c = 0; c < panier.length; c++) {  
+// --------- calculer prix total ------  
+function calculerPrix() {   
+  for (let c = 0; c < panier.length; c++) {  // boucle sur le nombre de produit dans le panier
     elt = panierTotal[c]; 
-    eltPrix = elt[5] ;
+    eltPrix = elt[5] ; // réupération du champ prix
     prixTotal = prixTotal + eltPrix ;
   }
-
-  console.log("prixTotal = " + prixTotal); // calcul prix //-------------------------------------------------------
 };
 
-  
-console.log("envoi prixTotal dans LocalStorage");
+// appel fonction
+calculerPrix(); 
 
 localStorage.setItem("prixTotal", prixTotal);  //prix Total dans le localStorage
+
 total = document.getElementById("prixTotal");
 total.innerHTML = "Total de votre sélection : " + prixTotal/100 + ".00 €";  //affichage DOM prix Total 
 
+ 
 
-    
-envoyerServer(); // panierTotal dans le localStorage
-
- // ------------ stockage local--------
+ // ------------ stockage local du panier total--------
 function envoyerServer () {           
-  // ------------ stockage local--------
-  console.log("envoi de panierTotal dans LocalStorage ");
+    console.log("envoi de panierTotal dans LocalStorage ");
   localStorage.setItem("panierTotal", JSON.stringify(panierTotal));  
 };
 
+envoyerServer(); // Appel fonction
 
 
-  //------------------------ formulaire contact ---------------------------------------------- 
-    //--------------------------- test sur valeurs formulaire
-    //function validEmail(email) {
-    //  const rep = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    // return rep.test(String(email).toLowerCase());
-   //} false;
+//--------------------------- FORMULAIRE CONTACT -------- 
+// écoute  submit
+const formulaire = document.getElementById("formulaireContact");
+formulaire.addEventListener ("submit", (event)=>  {
+event.preventDefault(); 
+
+  // Récupère la valeur des champs du formulaire
+  let firstName = document.getElementById("firstName").value;         
+  let lastName = document.getElementById("lastName").value;
+  let address = document.getElementById("address").value;
+  let city = document.getElementById("city").value;  
+  let email = document.getElementById("email").value;
+  //----
+  let contact= {firstName, lastName, address, city, email}; // init variable "contact"
 
 
-     //-----------------------------  foncvtionne "bof"  ------------ utiliser submit !! 
-    
-      
-     // function isString(contact){
-     //   if(contact = /[azA-Z]*/.test(value)){         
-     //     return false;
-      //    }
-      //  }
-        
-          //--------------------------- SUBMIT
+// fonction vérification saisies -- 
+function verifierSaisieFormulaire() {
+  // Contrôle saisies
+  if(firstName==""){
+    alert("Vous devez compléter votre Prénom !");
+    document.getElementById("firstName").style.backgroundColor="red";
+    document.getElementById("firstName").style.color="white";
+    // Permet de bloquer l'envoi du formulaire
+    return false;
+    }else{
+    document.getElementById("firstName").style.backgroundColor="#9C6";
+  }
 
-      const formulaire = document.getElementById("formulaireContact");
-      formulaire.addEventListener ("submit", (event)=>  {
-        event.preventDefault(); // écoute evt et continue
+  if(lastName==""){
+      alert("Vous devez compléter votre Nom !");
+      document.getElementById("lastName").style.backgroundColor="red";
+      document.getElementById("lastName").style.color="white";
+      // Permet de bloquer l'envoi du formulaire
+      return false;
+      }else{
+      document.getElementById("lastName").style.backgroundColor="#9C6";
+  }
 
-        
+  if(address==""){
+      alert("Vous devez compléter votre adresse !");
+      document.getElementById("address").style.backgroundColor="red";
+      document.getElementById("address").style.color="white";
+      // Permet de bloquer l'envoi du formulaire
+      return false;
+      }else{
+      document.getElementById("address").style.backgroundColor="#9C6";
+  }
 
-        // Récupérer value des champs nom et email
-        let firstname = document.getElementById("firstname").value;         
-        let name = document.getElementById("name").value;
-        let adress = document.getElementById("adress").value;
-        let city = document.getElementById("city").value;
-        //----
-        let mail = document.getElementById("mail").value;
-        //----
-        
-        
-
-        // fonction vérification saisies -- 
-        function verifierSaisieFormulaire() {
-          // Contrôle saisies
-          if(firstname==""){
-            alert("Vous devez compléter votre Prénom !");
-            document.getElementById("firstname").style.backgroundColor="red";
-            document.getElementById("firstname").style.color="white";
-            // Permet de bloquer l'envoi du formulaire
-            return false;
-            }else{
-            document.getElementById("firstname").style.backgroundColor="#9C6";
-          }
+  if(city==""){
+      alert("Vous devez compléter votre Ville !");
+      document.getElementById("city").style.backgroundColor="red";
+      document.getElementById("city").style.color="white";               
+      return false;
+      }else{
+      document.getElementById("city").style.backgroundColor="#9C6";
+  }
+    // Contrôle sur l'email
+  if(email==""){
+    alert("Vous devez compléter votre addresse email");
+    document.getElementById("email").style.backgroundColor="red";
+    document.getElementById("email").style.color="white";
+    return false;
+    }else{
+    document.getElementById("email").style.backgroundColor="#9C6";  
+  }
   
-          if(name==""){
-              alert("Vous devez compléter votre Nom !");
-              document.getElementById("name").style.backgroundColor="red";
-              document.getElementById("name").style.color="white";
-              // Permet de bloquer l'envoi du formulaire
-              return false;
-              }else{
-              document.getElementById("name").style.backgroundColor="#9C6";
-          }
-  
-          if(adress==""){
-              alert("Vous devez compléter votre adresse !");
-              document.getElementById("adress").style.backgroundColor="red";
-              document.getElementById("adress").style.color="white";
-              // Permet de bloquer l'envoi du formulaire
-              return false;
-              }else{
-              document.getElementById("adress").style.backgroundColor="#9C6";
-          }
-  
-          if(city==""){
-              alert("Vous devez compléter votre Ville !");
-              document.getElementById("city").style.backgroundColor="red";
-              document.getElementById("city").style.color="white";               
-              return false;
-              }else{
-              document.getElementById("city").style.backgroundColor="#9C6";
-          }
-            // Contrôle sur l'email
-          if(mail==""){
-            alert("Vous devez compléter votre adresse email");
-            document.getElementById("mail").style.backgroundColor="red";
-            document.getElementById("mail").style.color="white";
-            return false;
-            }else{
-            document.getElementById("mail").style.backgroundColor="#9C6";
+}; 
+// ---- fonction contrôle Email
+function validemail() {
+  if (/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/.test(email))
+  { return true;    
+    } else {
+      alert("veuillez utiliser une addresse eemail valide");
+      document.getElementById("email").style.backgroundColor="red";
+      document.getElementById("email").style.color="white";
+      return false;
+  }
+};
 
-          
-          }
-          
-            }; 
-            // ---- fonction contrôle Email
-            function validMail() {
-              if (/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/.test(mail))
-              {
-                
-                return true;
-                
-                } else {
-                 alert("veuillez utiliser une adresse mail valide");
-                 document.getElementById("mail").style.backgroundColor="red";
-                 document.getElementById("mail").style.color="white";
-                  return false;
-                  
-              }
-            }
-        
-    
+verifierSaisieFormulaire(); // vérifie saisies effectives
 
-        verifierSaisieFormulaire();
+validemail(); // vérifie conformité mail
 
-        validMail();
-    
-       //--------
-       
-       let contact= [firstname, name, adress, city, mail];
-      
-       //--------------------------------------     
-  
-       localStorage.setItem("contact", JSON.stringify(contact)); 
-       console.log("formulaire contact peuplé")
+// stockage local de "contact"" (pour joindre à "products" dans la requete POST)
+localStorage.setItem("contact", JSON.stringify(contact)); 
+console.log("formulaire contact peuplé"); // vérification transmission des données
 
-       
+let products=[];  // création de la table Products
+//--------- récupère l'identifiant des produits commandés et les affecte à Products
+function extractId() {
+  for (let p = 0; p < panier.length; p++) {   //boucle extraction Id des produits selectionnés 
+    elt = panier[p]; 
+    eltId = elt[0] ;  
+    products.push(eltId); // push des Id dans products
+  } 
+};
  
-        //--------------------- prepa Products pour joindre à la requete POST
-        
-        let products=[];
-        extractId();       
-        localStorage.setItem("products", JSON.stringify(products)); 
+//------------ Appel fonction d'initialisation de "Products"
+extractId(); 
 
-        //---------------------- 
-        function extractId() {
-          for (let p = 0; p < panier.length; p++) {   //boucle extraction Id des produits selectionnés 
-            elt = panier[p]; 
-            eltId = elt[0] ;  
-            products.push(eltId); // push des Id dans products
-          } 
-      };
- 
+// stockage local de "products" (pour joindre à "contact" dans la requete POST)
+  localStorage.setItem("products", JSON.stringify(products)); 
 
 
-    localStorage.getItem("table products", products);
-          
-    localStorage.getItem("contact", contact); 
-        // envoi server jsonBody
+  // récupération de la table "products"
+  localStorage.getItem("table products", products);
+
+  // récupération de la table "contact"        
+  localStorage.getItem("contact", contact); 
+
+  // initialisation jsonData  avec "contact et "products"
+  let jsonData = { contact : {contact} , products : (products)};
+
+  // stockage locage de jsonData
+  localStorage.setItem("jsonData", JSON.stringify(jsonData));
+
+
+
+  // ------- Appel POST depuis fctGP.js ------
+
+  // URL API en locale =  http://localhost:3000/api/furniture/order
   
-    jsonBody = [{contact} , {products}];
+  // URL API en ligne = https://api-oc5.herokuapp.com/api/furniture/order 
 
-    localStorage.setItem("jsonBody", JSON.stringify(jsonBody));
-  
-    console.log("jsonBody = " + jsonBody);   
-   
-//    alert(" !!! Envoi server distant");
-  
-    post("https://api-oc5.herokuapp.com/api/furniture/order", jsonBody);   
-  
-   window.location.href = "confirm.html";
+  post("http://localhost:3000/api/furniture/order", jsonData);   
 
-  }); 
+    //window.location.href = "confirm.html";
 
-   
-   
+
       
 
-      
-    
-    
-      
-    //--------------------------------------------
-      
-
-
- 
-   
-    
-
-
-
-
-
-
-
-
-  //--------------------------------- boite à outils  ------------
-
-    //function verification() {
-    //  let firstname = document.getElementById("firstname").value; 
-    //    if(firstName = /[azA-Z]*/.test(value)){
-     //     alert("ok");  
-     //   }
-    
-
-    //  let name = document.getElementById("name").value;
-    //  if(name="") {
-    //    alert('Vous devez compléter votre nom !');      
-    //    document.getElementById("name").style.borderColor="red";
-    //    document.getElementById("name").style.color="#FFF";         
-    //  }
-    
-    //  let adress = document.getElementById("adress");
-    //  if(adress=="") {
-    //    alert('Vous devez compléter votre adresse !');      
-    //    document.getElementById('idNom').style.borderColor="red";
-    //    document.getElementById('idNom').style.color="#FFF";  
-
-    //  let adress = document.getElementById("adress").value;
-             
-    //  }
-    //  let city = document.getElementById("city").value;
-      
-    // let mail = document.getElementById("mail").value;
-    
-
-  //  let textInput = ["firstName", "name","city"];
-  //    if (textInput.value === "") {
-  //      alert("champ vide");
-  //    }
-//
-  //  let contact= [firstname, name, adress, city, mail];
-    
-  //  console.log("contact = ");
-  //  console.table(contact);
-  //  }
-    
-    // valid alpha
-  //  function isAlpha(value){
-  //      return /[azA-Z]*/.test(value);
-  //  };
-      
-    //valid Email
-  //  function validateEmail(email) {
-  //    const rep = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  //   return rep.test(String(email).toLowerCase());
-  //  };
-
-  //  function isAdress(value){
-  //    return /\w+/.test(value);
-  //  }
-    //validFormulaire()
-
-    
-  //  alert("formulaire non valid");
-     
-     //---------------------------------
-        // ----- regroupement contact et id-panier pour n) de commande
-      //let packServer = [contact, panierTotal[0]];
-      //if ( contact = []) {    //  -------------------------- ne fonctionne pas 
-      //alert("defaut : formulaire vide ou incomplet");  
-
-
-
-      //---------------
-//    });
-  
-
-
-
-  
-
-
-
-
-
-
-
- // };
-//------------ test- localSorage-- select --------------------//
-// function ajoutSelection() {
-//    let panier = JSON.parse(localStorage.getItem("panier"));
-//    if (panier === null){
-//    panier = [];
-//    console.log("panier vide");
-//    } 
-//  };
-
-
-
-
-
-
-
-
-
-
-//   ajout produits //
-//function ajoutPanier (containerProduit, infoProduit, produitDsPanier, containerPanier, prixTotal) {
-    
-////  
-
-//}
-
-//  supp produits  // 
-
-
-//validFormulaire();
-
-
-//  - //
-
-
-
-
-
-//post("http://localhost:3000/api/furniture", contact);
-
-
-
-// Envoi contact - localStorage   ----------
-
-
-
-
-
-
-
-//return prixTotal;
-//}
-
-
-// //
-
-    
-
-/////////////////////////  BOITES A OUTILS  ------------
-//       valid infos  //
 
 // valid alpha
 //function isAlpha(value){
 //    return /[azA-Z]*/.test(value);
 //};
 
-// valid Email
-//function validateEmail(email) {
-//    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//    return re.test(String(email).toLowerCase());
-//};
-
-
-
-//function validate() {
-//    const $result = $("#result");
- //   const email = $("#email").val();
-//    $result.text("");
-  
-//    if (validateEmail(email)) {
-//      $result.text(email + " is valid :)");
-//      $result.css("color", "green");
-
-//    } else {
-//      $result.text(email + " is not valid :(");
-//      $result.css("color", "red");
-//    }
-//    return false;
-//  };
-
- // $("#validate").on("click", validate);
-
-// penser au message d'erreur quand champ non rempli
-
-// 
-//----------------------- traitement formulaire contact -------------------------------------------------//
-//class contact {
-//  constructor(firstname,name,adress, city,mail) {
-//  this.firstname = firstname;
-//  this.lastname = name;
-//  this.address = adress;
-//  this.city = city;
-//  this.email = mail;
-//  }
-//};
-
-//---------------------------------------------
-
-//get("http://localhost:3000/api/furniture")
-//.then(function(response){
-//   console.log(response);
-//   const containerPanier = JSON.parse(localStorage.getItem("panier"));
-//   const containerProduit = document.getElementById("containerProduit");
-
-//   if (containerPanier === 0) {
-//       "panier vide" // penser message "panier vide" //
-
-//   }else{
-//     let prixTotal = 0;
-//     for (let containerProduit of containerProduit) {
-//        for (let panier of response) {
-//           if (containerPanier.id === infoProduit._id) {
-//              prixTotal = ajoutPanier (container, infoProduit, produitDsPanier, containerPanier, prixTotal)
-//           };
-           
-//           localStorage.setItem("totalConfirme", prixTotal);
-//          }
-//       }
-//     }  
-//   });
-
-
-//    btn.addEventListener("clic", function(event) {
-        
-//      event.preventDefault();
-//      let validite = true;
-//      validite = checkFormErrors(validite);
-
-//      if (validite === true) {
-//         sendOrder();
-//      }
-//    });
-
-//  alert("appel supprimer Produit");
-      //document.getElementsByClassName("containerProduit");
-      //containerProduit.removeChild(divContenu, divPrice);             
-      //document.getElementsByClassName("divContenu");
-      //divContenu.removeChild(image, titre, divVarnish);
-
-
-
-      
- 
-  //  supprimerProduit(); 
-  //  elt = panier[s]; 
-  //  eltId = elt[0] ; 
-  //  const btnSuppId = [];
-  //  btnSuppId.push(eltId);    
-
-
-  //--//------------- test validité saisies
-  //let textInput = ["firstName", "name","city"];
-  //if (textInput.value === "") {
-  //  alert("champ vide");
-  //}
-  
-   
- 
 
 
 
@@ -592,17 +285,9 @@ function envoyerServer () {
 
 
 
- //  "use strict";         
- //  let forms = document.getElementsByClassName("needs-validation"); //recup tous les formulaires
- //    var validation = Array.prototype.filter.call(forms, function(form) { //créé une table avec les "needs-validation"
- 
- //   form.addEventListener("submit", function(event) { //écoute saisies
- //      if (form.checkValidity() === false) {    //check = return true si donées valides 
 
- 
- //         event.preventDefault(); // écoute evt et continue
- //          event.stopPropagation(); // arrête là
-  //       }
- //       form.classList.add("was-validated");
- //      }, false);
- //    }, false);
+
+
+
+}); 
+
