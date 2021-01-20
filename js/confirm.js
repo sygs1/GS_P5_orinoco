@@ -26,30 +26,16 @@ function afficherConfirmation(){
     DivRecapCommande.appendChild(messagePrix);
 
 };
-
-
 // Appel fonction 
 afficherConfirmation();
 
 
-
 //--------------
- ///     adresse livraison  /// 
+ ///    message avec prénom et adresse livraison  /// 
+let contact1 = [JSON.parse(localStorage.getItem("contact"))];
+console.log("-------Coordonnées de livraison-----------");
+console.table(contact1);
+[jDoe] = contact1.slice();
 
-
- //let contact1 = [JSON.parse(localStorage.getItem("contact"))];
-//console.log("-------Coordonnées de livraison-----------")
-// console.table(contact1);
- 
-
-// const filteredContact = contact1.filter( (contactItem, firstName ) => {       
- //   if (contactItem === firstName)   
- //       return firstName.value;      
- //   }     
-//  )
- 
- // console.log(filteredContact) ;
-//  firstName = [filteredContact];
- 
-//   alert("Merci " + firstName + " vous serez livré au " + contact1[2] + " à " + contact1[3] );
+alert("Merci  " + jDoe.firstName + ", vous serez livré(e) au  " + jDoe.address + "  à  " + jDoe.city);
 

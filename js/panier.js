@@ -231,13 +231,15 @@ let products=[];  // création de la table Products
 function extractId() {
   for (let p = 0; p < panier.length; p++) {   //boucle extraction Id des produits selectionnés 
     elt = panier[p]; 
-    eltId = elt[0] ;  
+    eltId = elt[0] ;     
     products.push(eltId); // push des Id dans products
   } 
+
 };
  
 //------------ Appel fonction d'initialisation de "Products"
 extractId(); 
+
 
 // stockage local de "products" (pour joindre à "contact" dans la requete POST)
   localStorage.setItem("products", JSON.stringify(products)); 
@@ -245,6 +247,7 @@ extractId();
 
   // récupération de la table "products"
   localStorage.getItem("table products", products);
+  
 
   // récupération de la table "contact"        
   localStorage.getItem("contact", contact); 
