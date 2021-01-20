@@ -15,7 +15,7 @@ const id = rechercherId(); // init constante id avec resultat recherche
 //http://localhost:3000/api/furniture = URL API locale
 
 // // ------- Appel GET depuis fctGP.js ------
-get("http://localhost:3000/api/furniture" + id) //affectation Id à l'URL
+get("https://api-oc5.herokuapp.com/api/furniture/" + id) //affectation Id à l'URL
 .then(function(response) {     
     
     ///// Declarations des réponses 
@@ -67,7 +67,7 @@ get("http://localhost:3000/api/furniture" + id) //affectation Id à l'URL
         div.appendChild(varnish);
         div.appendChild(price);
         div.appendChild(btnAjoutPanier);
-    }
+    };
 
         afficherProduit(); 
         console.table(response);    // verification table response

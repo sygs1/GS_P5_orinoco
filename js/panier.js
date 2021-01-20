@@ -8,7 +8,7 @@ panier = JSON.parse(localStorage.getItem("panier"));
 if (panier === null ) {
   alert("votre panier est vide = allez à la page d'accueil pour sélectionner un produit");
   } else {
-    alert("pour continuer vos achats = sélectionnez Accueil");
+    alert("pour pousuivre vos achats = sélectionnez (Accueil)");
 };
   
   //---------------- verif nombre de produit dans panier -----------------------------------------
@@ -70,8 +70,6 @@ function ajouterChoixProduit (){
 
     divTitre.appendChild(titre);
     divTitre.appendChild(btnSupp);
-    
-
     
   }; //------- fin fonction ajoutProduit--------------------------
   //------- Appel fonction ajoutProduit-
@@ -155,6 +153,7 @@ event.preventDefault();
   let contact= {firstName, lastName, address, city, email}; // init variable "contact"
 
 
+  
 // fonction vérification saisies -- 
 function verifierSaisieFormulaire() {
   // Contrôle saisies
@@ -212,7 +211,7 @@ function validemail() {
   if (/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/.test(email))
   { return true;    
     } else {
-      alert("veuillez utiliser une addresse eemail valide");
+      alert("veuillez utiliser une addresse email valide");
       document.getElementById("email").style.backgroundColor="red";
       document.getElementById("email").style.color="white";
       return false;
@@ -264,7 +263,7 @@ extractId();
   
   // URL API en ligne = https://api-oc5.herokuapp.com/api/furniture/order 
 
-  post("http://localhost:3000/api/furniture/order", jsonData);   
+  post("https://api-oc5.herokuapp.com/api/furniture/order/", jsonData);   
 
     //window.location.href = "confirm.html";
 

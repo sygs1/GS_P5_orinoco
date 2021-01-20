@@ -29,7 +29,7 @@ function ajoutProduit(responseProduit, section) { // création et formattage des
     //price.setAttribute("")
 
     const link = document.createElement("a");
-    link.setAttribute("href", "produit.html?id=" + responseProduit._id);
+    link.setAttribute("href", "produit.html?id=" + responseProduit._id); // selection produit avec id
 
    // organisation des éléments cards 
    div.appendChild(link);        
@@ -46,7 +46,7 @@ function ajoutProduit(responseProduit, section) { // création et formattage des
 
 
 // ------- Appel GET depuis fctGP.js ------
-get("http://localhost:3000/api/furniture")
+get("https://api-oc5.herokuapp.com/api/furniture")
 .then (function (responseProduit){
 
     const section = document.getElementById("containerArticles"); 
