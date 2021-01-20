@@ -5,8 +5,8 @@ panier = JSON.parse(localStorage.getItem("panier"));
 
 
 //controle si panier vide  - ne fonctionne pas
-if (panier === null){
-  alert("votre panier est vide");
+if (panier === null ) {
+  alert("votre panier est vide = allez à la page d'accueil pour sélectionner un produit");
   } else {
     alert("pour continuer vos achats = sélectionnez Accueil");
 };
@@ -264,7 +264,7 @@ extractId();
   
   // URL API en ligne = https://api-oc5.herokuapp.com/api/furniture/order 
 
-  post("https://api-oc5.herokuapp.com/api/furniture/order", jsonData);   
+  post("http://api-oc5.herokuapp.com/api/furniture/order", jsonData);   
 
     //window.location.href = "confirm.html";
 

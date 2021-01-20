@@ -15,7 +15,7 @@ function get(url) {
                 }
             }
         };
-        request.send(); // envoi request
+        request.send(); 
     });
     return promise; // revoi infos API quand vérif et transmission request ok
 };

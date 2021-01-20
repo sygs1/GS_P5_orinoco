@@ -15,7 +15,7 @@ const id = rechercherId(); // init constante id avec resultat recherche
 //http://localhost:3000/api/furniture = URL API locale
 
 // // ------- Appel GET depuis fctGP.js ------
-get("https://api-oc5.herokuapp.com/api/furniture/ " + id) //affectation Id à l'URL
+get("http://api-oc5.herokuapp.com/api/furniture/" + id) //affectation Id à l'URL
 .then(function(response) {     
     
     ///// Declarations des réponses 
