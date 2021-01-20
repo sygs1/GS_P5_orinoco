@@ -46,7 +46,7 @@ function ajoutProduit(responseProduit, section) { // création et formattage des
 
 
 // ------- Appel GET depuis fctGP.js ------
-get("https://api-oc5.herokuapp.com/api/furniture")
+get("http://localhost:3000/api/furniture")
 .then (function (responseProduit){
 
     const section = document.getElementById("containerArticles"); 
