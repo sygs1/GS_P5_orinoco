@@ -197,21 +197,21 @@ function verifierSaisieFormulaire() {
   }
     // Contrôle sur l'email
   if(email==""){
-    alert("Vous devez compléter votre addresse email");
+    alert("Vous devez compléter votre adresse email");
     document.getElementById("email").style.backgroundColor="red";
     document.getElementById("email").style.color="white";
-    return false;
-    }else{
+    return false;      
+    }else {
     document.getElementById("email").style.backgroundColor="#9C6";  
   }
   
 }; 
 // ---- fonction contrôle Email
-function validemail() {
+function validEmail() {
   if (/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/.test(email))
   { return true;    
     } else {
-      alert("veuillez utiliser une addresse email valide");
+      alert("veuillez utiliser une adresse email valide");
       document.getElementById("email").style.backgroundColor="red";
       document.getElementById("email").style.color="white";
       return false;
@@ -219,8 +219,7 @@ function validemail() {
 };
 
 verifierSaisieFormulaire(); // vérifie saisies effectives
-
-validemail(); // vérifie conformité mail
+validEmail(); // vérifie conformité mail
 
 // stockage local de "contact"" (pour joindre à "products" dans la requete POST)
 localStorage.setItem("contact", JSON.stringify(contact)); 
