@@ -264,7 +264,7 @@ extractId();
   
   // URL API en ligne = https://api-oc5.herokuapp.com/api/furniture/order 
 
-  post("http://localhost:3000/api/furniture/order", jsonData);   
+  post("https://api-oc5.herokuapp.com/api/furniture/order", jsonData);   
 
     //window.location.href = "confirm.html";
 
