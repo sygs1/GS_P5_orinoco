@@ -277,7 +277,7 @@ extractId();
   
   alert("vous allez être rediriger vers votre commande");
 
-  //  window.location.href = "confirm.html";
+  window.location.href = "confirm.html";
 
 
       
