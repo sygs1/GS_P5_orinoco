@@ -269,12 +269,15 @@ extractId();
   .then (function(response) {     
     orderId = response.orderId;
     console.log(orderId);   
+
     localStorage.setItem("orderId", orderId);
+
   });   
 
   
-  alert("vous allez être rediriger vers votre commande")
-    window.location.href = "confirm.html";
+  alert("vous allez être rediriger vers votre commande");
+
+  //  window.location.href = "confirm.html";
 
 
       
