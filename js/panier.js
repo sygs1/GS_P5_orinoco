@@ -268,11 +268,12 @@ extractId();
   post("https://api-oc5.herokuapp.com/api/furniture/order", jsonData)
   .then (function(response) {     
     orderId = response.orderId;
-    console.log(orderId);
-
+    console.log(orderId);   
     localStorage.setItem("orderId", orderId);
   });   
+
   
+  alert("vous allez être rediriger vers votre commande")
     window.location.href = "confirm.html";
 
 
