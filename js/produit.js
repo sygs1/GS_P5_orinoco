@@ -17,7 +17,7 @@ const id = rechercherId(); // init constante id avec resultat recherche
 // // ------- Appel GET depuis fctGP.js ------
 get("https://api-oc5.herokuapp.com/api/furniture/" + id) //affectation Id à l'URL
 .then(function(response) {     
-    
+   
     ///// Declarations des réponses 
     console.log("---------------------");
     const titre = document.createElement("p"); 
@@ -70,6 +70,7 @@ get("https://api-oc5.herokuapp.com/api/furniture/" + id) //affectation Id à l'U
     };
 
         afficherProduit(); 
+        console.log("table produit");
         console.table(response);    // verification table response
 
         // ajout du produit au panier
@@ -93,7 +94,8 @@ get("https://api-oc5.herokuapp.com/api/furniture/" + id) //affectation Id à l'U
         // sauvegarde du panier dans le localStorage
         localStorage.setItem("panier", JSON.stringify(panier));       
     
-        //  verification nouveau panier   
+        //  verification nouveau panier 
+        console.log("table produit avec selection finition");  
         console.table(panier);
     };
 

@@ -245,14 +245,14 @@ extractId();
 
 
   // récupération de la table "products"
-  localStorage.getItem("table products", products);
+  localStorage.getItem("products", products);
   
 
   // récupération de la table "contact"        
   localStorage.getItem("contact", contact); 
 
   // initialisation jsonData  avec "contact et "products"
-  let jsonData = { contact : {contact} , products : (products)};
+  let jsonData = { contact , products : (products)};
 
   // stockage locage de jsonData
   localStorage.setItem("jsonData", JSON.stringify(jsonData));
@@ -265,9 +265,15 @@ extractId();
   
   // URL API en ligne = https://api-oc5.herokuapp.com/api/furniture/order 
 
-  post("https://api-oc5.herokuapp.com/api/furniture/order/", jsonData);   
+  post("https://api-oc5.herokuapp.com/api/furniture/order", jsonData)
+  .then (function(response) {     
+    orderId = response.orderId;
+    console.log(orderId);
 
-    //window.location.href = "confirm.html";
+    localStorage.setItem("orderId", orderId);
+  });   
+  
+    window.location.href = "confirm.html";
 
 
       

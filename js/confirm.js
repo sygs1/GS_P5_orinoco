@@ -5,7 +5,7 @@
 function afficherConfirmation(){   
     let panierDefinitif = JSON.parse(localStorage.getItem("panierTotal")); // rdestockage panier du localStorage
     let prixTotal = JSON.parse(localStorage.getItem("prixTotal")); // rdestockage montant total de la commande du localStorage
-    
+    let orderId = (localStorage.getItem("orderId"));
 
     const confirmId = panierDefinitif[0]; // recherche Id du produit commandé
 
@@ -13,11 +13,11 @@ function afficherConfirmation(){
     const DivRecapCommande = document.getElementById("recap");
     DivRecapCommande.setAttribute("class", "row w-100  ml-3 text-center");
     
-    const messageRecap = document.createElement("h5");
+    const messageRecap = document.createElement("h6");
     messageRecap.setAttribute("class","col-12 text-center");
-    messageRecap.innerHTML = "votre n° de commande à conserver : " + confirmId[0];
+    messageRecap.innerHTML = "votre n° de commande à conserver   :   " + orderId;
 
-    const messagePrix = document.createElement("h5");
+    const messagePrix = document.createElement("h6");
     messagePrix.setAttribute("class","col-12 text-center");
     messagePrix.innerHTML = "Montant de vos achats : " + prixTotal/100 + ".00 €";
 
