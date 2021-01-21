@@ -7,3 +7,8 @@ objectif de l'exercice, apprentissage du JavaScript
 choix des articles = meubles en chêne
 
 utilisation de Sass et initiation Bootstrap (cours conseillé par OC).
+
+Une gitHubPage permet d'accéder directement au MVP
+
+L'API a été hébergée temporairement ici : https://api-oc5.herokuapp.com/api/furniture/ pour compléter la gitHubPage
+
